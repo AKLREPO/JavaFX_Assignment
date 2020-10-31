@@ -1,0 +1,27 @@
+plugins{
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.9'
+    id 'java' 
+}
+
+sourceSets{
+        resources {
+            'Assignment_02/resources'
+        }
+}
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    testImplementation     'junit:junit:4.13'
+}
+
+javafx{
+    version = "15"
+    modules = ['javafx.controls', 'javafx.fxml']
+}
+
+mainClassName = 'org.openjfx.Driver'
