@@ -1,14 +1,11 @@
 plugins{
     id 'application'
     id 'org.openjfx.javafxplugin' version '0.0.9'
-    id 'java' 
+    id 'java'
 }
 
-sourceSets{
-        resources {
-            'Assignment_02/resources'
-        }
-}
+group 'org.murdoch'
+version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
@@ -16,7 +13,20 @@ repositories {
 }
 
 dependencies {
-    testImplementation     'junit:junit:4.13'
+    implementation 'javax.xml.bind:jaxb-api:2.4.0-b180830.0359'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+
+    implementation 'org.apache.logging.log4j:log4j-api:2.14.0'
+    implementation 'org.apache.logging.log4j:log4j-core:2.14.0'
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
 }
 
 javafx{
@@ -24,4 +34,6 @@ javafx{
     modules = ['javafx.controls', 'javafx.fxml']
 }
 
-mainClassName = 'org.openjfx.Driver'
+application {
+    mainClassName = 'org.openjfx.Driver'
+}

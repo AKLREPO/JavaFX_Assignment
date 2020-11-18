@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?language javascript?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+
+<BorderPane fx:id="borderPane" prefHeight="640.0" prefWidth="1024.0"
+            xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx/15" fx:controller="org.openjfx.MainController">
+ 
+    <top>
+        <Label fx:id="label" text="Welcome to Family tree application" />
+        
+        <HBox spacing="20">
+            <!-- Place some function like event handler -->
+
+            <Button fx:id="btnLoadTree" text="Load Tree" onAction="#Click_Load_Tree_Button" />
+            <Button fx:id="btnSaveTree" text="Save Tree" onAction="#Click_Save_Tree_Button"/>
+            <Button fx:id="btnCreateTree" text="Create Tree" onAction="#Click_Create_Tree_Button"/>
+        </HBox>
+    </top>
+    
+    <!-- https://docs.oracle.com/javase/8/javafx/fxml-tutorial/why_use_fxml.htm#JFXMG137 -->
+    <!-- https://stackoverflow.com/questions/12166786/multiple-fxml-with-controllers-share-object-->
+    
+    <center>
+        <HBox fx:id="center">
+            <TreeView fx:id="family_tree" layoutX="0" layoutY="200" prefHeight="193.0" prefWidth="471.0" /> 
+
+            <VBox fx:id="content"></VBox>
+        </HBox>
+    </center>
+
+</BorderPane>

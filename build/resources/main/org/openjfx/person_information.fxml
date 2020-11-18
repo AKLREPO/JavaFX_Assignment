@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+
+<VBox fx:id="vboxCenter_two" fx:controller="" xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx/15">
+    <VBox>
+        <Label text="Person Info: " minWidth="50" minHeight="50"  fx:id="lblPersonInfo" />
+        <Label text="Name " />
+        <Label text="Surname " />
+        <Label text="Maiden Name " />
+        <Label text="Gender" />
+        <Label text="Life Description" />
+    </VBox>
+
+    <VBox>
+        <Label fx:id="lblName" text="" />
+        <Label fx:id="lblSurname" text="" />
+
+    </VBox>
+</VBox>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?language javascript?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+
+<VBox fx:id="vboxCenter_one" fx:controller="org.openjfx.RootController" xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx/15">              
+    <Button fx:id="btnAddRootPerson" text="Add root person" onAction="#handleAddRootPersonEvent"/>
+    <Label fx:id="lblRootPersonDescription" text="Load a tree or add a new root person" />
+    
+    <!-- once i clicked on this button, the initial state will change -->
+</VBox>
