@@ -26,7 +26,7 @@ public class Human {
 
     @XmlEnum
     public enum Relationship_Type {
-        GRANDPARENT, FATHER, MOTHER, UNCLE, AUNT
+        GRANDPARENT, FATHER, MOTHER, WIFE ,UNCLE, AUNT, COUSIN, BROTHER, SISTER, SON , DAUGHTER, GRANDCHILDREN
     }
 
     @XmlEnum
@@ -40,15 +40,16 @@ public class Human {
     private int Age;
     private String life_description;
 
-    private HashMap<Relationship_Type, Human> immediate_relatives_list;
+
     private Human father;
     private Human mother;
     private Human spouse;
+    private HashMap<Relationship_Type, ArrayList<Human>> immediate_relatives_list;
     private ArrayList<Human> children_list;
     private ArrayList<Human> grandchildren_list;
 
     public Human() {
-        this.immediate_relatives_list = new HashMap<Relationship_Type, Human>();
+        this.immediate_relatives_list = new HashMap<Relationship_Type, ArrayList<Human>>();
         this.children_list = new ArrayList<Human>();
         this.grandchildren_list = new ArrayList<Human>();
     }
@@ -135,23 +136,28 @@ public class Human {
         return this.spouse;
     }
 
-    public HashMap<Relationship_Type, Human> Get_Immediate_Relatives_List() {
+    public HashMap<Relationship_Type, ArrayList<Human>> Get_Immediate_Relatives_List() {
         return this.immediate_relatives_list;
     }
 
     @XmlElementWrapper(name = "immediateRelativeList")
     @XmlElement
-    public void Set_Immediate_Relatives_List(HashMap<Relationship_Type, Human> new_immediate_relatives_list){
+    public void Set_Immediate_Relatives_List(HashMap<Relationship_Type, ArrayList<Human>> new_immediate_relatives_list){
         this.immediate_relatives_list = new_immediate_relatives_list;
     }
 
     public boolean Add_Immediate_Relatives_List(Relationship_Type relation, Human new_relatives) {
-        this.immediate_relatives_list.put(relation, new_relatives);
-        return true;
+        if(!this.immediate_relatives_list.get(relation).contains(new_relatives)){
+            this.immediate_relatives_list.get(relation).add(new_relatives);
+            return true;
+        }
+        return false;
     }
 
-    public void Remove_Immediate_Relatives(Human new_relatives) {
-        this.immediate_relatives_list.remove(new_relatives);
+    public void Remove_Immediate_Relatives(Relationship_Type relation, Human new_relatives) {
+        if(this.immediate_relatives_list.get(relation).contains(new_relatives)){
+            this.immediate_relatives_list.get(relation).remove(new_relatives);
+        }
     }
 
     public void List_Immediate_Relatives_List() {
@@ -161,17 +167,17 @@ public class Human {
     }
 
     public boolean Add_Children(Human new_children) {
-        for (Human e : this.children_list) {
-            if (e.equals(new_children))
-                return false;
+        if(!this.children_list.contains(new_children)){
+            this.children_list.add(new_children);
+            return true;
         }
-
-        this.children_list.add(new_children);
-        return true;
+        return false;
     }
 
     public void Remove_Children(Human new_children) {
-        this.children_list.remove(new_children);
+        if(this.children_list.contains(new_children)){
+            this.children_list.remove(new_children);
+        }
     }
 
     @XmlElementWrapper(name = "childrenList")
@@ -182,12 +188,17 @@ public class Human {
 
 
     public boolean Add_GrandChildren(Human new_grandchildren) {
-        this.grandchildren_list.add(new_grandchildren);
-        return true;
+        if(!this.grandchildren_list.contains(new_grandchildren)){
+            this.grandchildren_list.add(new_grandchildren);
+            return true;
+        }
+        return false;
     }
 
     public void Remove_Grandchildren(Human new_grandchildren) {
-        this.grandchildren_list.remove(new_grandchildren);
+        if(this.grandchildren_list.contains(new_grandchildren)){
+            this.grandchildren_list.remove(new_grandchildren);
+        }
     }
 
     @XmlElementWrapper(name = "grandchildrenList")
